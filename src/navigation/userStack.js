@@ -7,7 +7,7 @@ import SettingsScreen from "../screens/Setting";
 
 const Tab = createBottomTabNavigator();
 
-export default userStack = ({ setUser }) => {
+export default userStack = () => {
     return (
         <NavigationContainer>
             <Tab.Navigator
@@ -16,7 +16,7 @@ export default userStack = ({ setUser }) => {
                 }}
             >
                 <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Settings" component={props => <SettingsScreen {...props} setUser={setUser} />} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
             </Tab.Navigator>
         </NavigationContainer>
     )

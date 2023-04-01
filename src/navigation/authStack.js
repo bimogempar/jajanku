@@ -7,7 +7,7 @@ import SignInScreen from '../screens/SignIn';
 
 const Stack = createNativeStackNavigator();
 
-export default function AuthStack({ setUser }) {
+export default function AuthStack() {
     return (
         <NavigationContainer>
             <Stack.Navigator
@@ -17,7 +17,7 @@ export default function AuthStack({ setUser }) {
                     },
                 }}>
                 <Stack.Screen options={{ headerShown: false }} name="Welcome" component={WelcomeScreen} />
-                <Stack.Screen options={{ title: 'Sign In' }} name="Sign In">{props => <SignInScreen {...props} setUser={setUser} />}</Stack.Screen>
+                <Stack.Screen options={{ title: 'Sign In' }} name="Sign In" component={SignInScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
