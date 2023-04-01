@@ -6,6 +6,7 @@ export default HomeScreen = ({ navigation }) => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Home!</Text>
+            <Text>Your're login {user?.email}</Text>
         </View>
     )
 }
