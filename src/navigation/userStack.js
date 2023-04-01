@@ -1,8 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { Text, Button } from "react-native";
 
-import HomeScreen from "../screens/Home";
+import HomeStack from "./homeStack";
 import SettingsScreen from "../screens/Setting";
 
 const Tab = createBottomTabNavigator();
@@ -15,7 +14,7 @@ export default userStack = () => {
                     headerShown: false,
                 }}
             >
-                <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Screen name="Home" component={HomeStack} />
                 <Tab.Screen name="Settings" component={SettingsScreen} />
             </Tab.Navigator>
         </NavigationContainer>

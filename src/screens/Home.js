@@ -7,6 +7,10 @@ export default HomeScreen = ({ navigation }) => {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Home!</Text>
             <Text>Your're login {user?.email}</Text>
+            <Button
+                title="Detail"
+                onPress={() => navigation.navigate('Detail')}
+            />
         </View>
     )
 }
