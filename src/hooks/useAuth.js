@@ -5,23 +5,47 @@ const auth = getAuth();
 
 export function useAuth() {
   const [user, setUser] = useState('');
+  const [authUser, setAuthUser] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const unsubscribeFromAuthStateChanged = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
+        // observe sign in from firebase
         setUser(user);
       } else {
-        // User is signed out
-        setUser(undefined);
+        // sign out
+        setUser('');
+        setAuthUser('');
       }
     });
 
     return unsubscribeFromAuthStateChanged;
   }, []);
 
+  useEffect(() => {
+    if (user !== '') {
+      setLoading(true)
+      getRole(user).then(_user => {
+        setAuthUser(_user)
+        setLoading(false)
+      })
+    }
+  }, [user])
+
+  const getRole = async (user) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const _user = { ...user, role: 'user' }
+        resolve(_user)
+      }, 4000);
+    });
+  }
+
   return {
     user,
+    authUser,
+    loading,
+    setLoading,
   };
 }

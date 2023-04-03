@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { View, Text, Button, TextInput, Pressable, ActivityIndicator } from "react-native";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useAuth } from "../hooks/useAuth";
 
 const auth = getAuth();
 
 export default SignInScreen = () => {
     const [value, setValue] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const { setLoading } = useAuth(true);
     const handleSignIn = async () => {
         try {
-            setIsLoading(true);
+            setLoading(true);
             await signInWithEmailAndPassword(auth, value.email, value.password);
         } catch (error) {
             setValue({
@@ -17,15 +18,15 @@ export default SignInScreen = () => {
                 error: "Username atau password salah!",
             });
         } finally {
-            setIsLoading(false);
+            setLoading(false);
         }
     }
 
-    if (isLoading) return (
-        <View className="flex-1 items-center justify-center">
-            <ActivityIndicator />
-        </View>
-    )
+    // if (isLoading) return (
+    //     <View className="flex-1 items-center justify-center">
+    //         <ActivityIndicator />
+    //     </View>
+    // )
 
     return (
         <View className="flex-1 items-center justify-center">
