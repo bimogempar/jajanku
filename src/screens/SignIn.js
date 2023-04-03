@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, Button, TextInput, Pressable } from "react-native";
+import { View, Text, Button, TextInput, Pressable, ActivityIndicator } from "react-native";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth();
@@ -22,8 +22,8 @@ export default SignInScreen = () => {
     }
 
     if (isLoading) return (
-        <View>
-            <Text>Loading broo...!</Text>
+        <View className="flex-1 items-center justify-center">
+            <ActivityIndicator />
         </View>
     )
 
